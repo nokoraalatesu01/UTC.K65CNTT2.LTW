@@ -1,0 +1,10 @@
+{
+  "id": "course_001",
+  "name": "C# Fundamentals",
+  "fee": 1500,
+  "duration": 40,
+  "description": "Learn the basics of C# programming language",
+  "status": 1,
+  "createdDate": "2026-08-01T10:00:00",
+  "updatedDate": "2026-08-01T10:00:00"
+}
