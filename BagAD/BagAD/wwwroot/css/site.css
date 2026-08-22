@@ -26,3 +26,13 @@
 .table img {
     object-fit: contain;
 }
+.carousel-banner-img {
+    height: 380px;
+    object-fit: cover;
+}
+
+@media (max-width: 576px) {
+    .carousel-banner-img {
+        height: 200px;
+    }
+}
