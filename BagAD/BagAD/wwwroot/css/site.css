@@ -1,0 +1,28 @@
+.banner {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .banner img {
+        width: 100%;
+        height: 185px;
+        object-fit: cover;
+    }
+
+.card {
+    border: 1px solid #ddd;
+    height: 220px;
+}
+
+    .card img {
+        background: white;
+    }
+
+    .card h5 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+.table img {
+    object-fit: contain;
+}

@@ -1,0 +1,52 @@
+﻿@model List<BagAD.Models.Product>
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<h2>Quản lý sản phẩm</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Created At</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ID</td>
+
+                <td>@product.Name</td>
+
+                <td>
+                    @product.Price.ToString("#,##0") đ
+                </td>
+
+                <td>
+                    @product.CreatedAt.ToString("dd-MM-yyyy")
+                </td>
+
+                <td>
+                    <img src="@product.Image"
+                         width="50"
+                         height="50"
+                         style="object-fit: contain;" />
+                </td>
+
+                <td>
+                    <a href="#" class="btn btn-success btn-sm">
+                        View
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
