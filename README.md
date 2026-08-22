@@ -3,5 +3,6 @@
 Đây là github về việc học C# của Học viên Nguyễn Đức Trường MSSV:241230872
 
 Đã làm được Bai 01 : Quản lý sinh viên
+Đã làm được file Lab thầy đưa : gồm 3 bài hướng dẫn luyện tập tải visual và cơ bản cách làm + 1 bài về web mua bán túi xách
 
 Đã nắm bắt được cơ bản trước khi học tiếp
