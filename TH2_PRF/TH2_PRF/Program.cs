@@ -29,7 +29,9 @@ namespace TH2_PRF
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            app.MapControllerRoute(
+                name: "account",
+                pattern: "{controller=Account}/{action=Index}/{id?}");
             app.Run();
         }
     }
