@@ -70,6 +70,10 @@ namespace TH2_PRF.Controllers
         };
             // gửi đối tượng account qua view
             Account account = accounts.FirstOrDefault(ac => ac.Id == id);
+            if (account == null)
+            {
+                return NotFound(); // hoặc: return RedirectToAction("Index");
+            }
             ViewBag.account = account;
             return View();
         }
