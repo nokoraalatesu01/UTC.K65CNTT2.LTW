@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    Product product = ViewBag.Product;
+}
+
+<h2>Chi tiết sản phẩm</h2>
+<div class="row">
+    <div class="col-md-4">
+        <img src="@product.Image" alt="@product.Name"
+             style="width:100%; max-width:300px; height:300px; object-fit:cover; border-radius:8px;">
+    </div>
+    <div class="col-md-8">
+        <h3>Sản phẩm: @product.Name</h3>
+        <p>
+            <del class="text-muted">Giá gốc: @product.Price.ToString("N0")</del>
+            <strong class="text-danger"> Giá mới: @product.SalePrice.ToString("N0")</strong>
+        </p>
+        <h5>Mô Tả:</h5>
+        <p>@product.Description</p>
+        <p>
+            <strong>Trạng thái:</strong>
+            @if (product.Status)
+            {
+                <span class="text-success">Còn hàng</span>
+            }
+            else
+            {
+                <span class="text-danger">Hết hàng</span>
+            }
+        </p>
+        <p><strong>Ngày đăng:</strong> @product.CreatedAt.ToString("dd/MM/yyyy")</p>
+        <p>
+            <a asp-route="product-index" class="btn btn-sm btn-danger">Về danh sách</a>
+        </p>
+    </div>
+</div>
