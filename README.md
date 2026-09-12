@@ -10,4 +10,6 @@
 Đã làm được Bài 1: Tạo form và sử dụng các thuộc tính mở rộng trên form Bài thực hành 03 (SachMVCLab03)  
 Đã làm được Bài 2: Tạo và sử dụng partial View sừ dụng tại Views/Home/Index.cshtml Bài thực hành 03 (SachMVCLab03)
 Đã làm được Bài 3: Gọi PartialView thông qua jQuery ajax có gửi kèm dữ liệu từ model Bài thực hành 03 (SachMVCLab03)
+Đã làm được bài 4: Tạo và sử dụng component và bài 5:Tạo và sử dụng layout cơ bản Bài thực hành 03 và sửa cho phù hợp bootstrap 3. phù hợp đề bài (SachMVCLab03)
+
 Đã nắm bắt được cơ bản trước khi học tiếp

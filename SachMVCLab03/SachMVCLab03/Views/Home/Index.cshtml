@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "my_layout";
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,7 +9,10 @@
 <hr />
 <div id="data-from-ajax" class="row">Loading data....</div>
 <hr />
+<div class="row">...</div>
 
+<h2>Popular Book Load từ BookComponent</h2>
+@await Component.InvokeAsync("Book")
 
 @section Scripts {
     <script>

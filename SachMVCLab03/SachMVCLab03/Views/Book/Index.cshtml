@@ -4,12 +4,11 @@ ViewData["Title"] = "Index";
 }
 <h2>Danh sách các cuốn sách</h2>
 <!-- Hien thị các comboobox trên form -->
-<form action="" method="POST" role="form"
-      style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-    <select name="AuthorId" class="form-control" style="width:200px" asp-items="@ViewBag.authors">
+<form action="" method="POST" class="form-inline" role="form">
+    <select name="AuthorId" class="form-control" asp-items="@ViewBag.authors">
         <option value="">Chọn tác giả</option>
     </select>
-    <select name="GenreId" class="form-control" style="width:200px" asp-items="@ViewBag.genres">
+    <select name="GenreId" class="form-control" asp-items="@ViewBag.genres">
         <option value="">Chọn thể loại</option>
     </select>
     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
