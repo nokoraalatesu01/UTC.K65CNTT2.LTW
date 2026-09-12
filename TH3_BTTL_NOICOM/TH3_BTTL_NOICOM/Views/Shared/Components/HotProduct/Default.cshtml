@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TH3_BTTL_NOICOM.Models.Product>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@item.Image" style="width:100%; height:180px; object-fit:cover;" alt="@item.Name" />
+                <div class="caption text-center">
+                    <p>@item.Name</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

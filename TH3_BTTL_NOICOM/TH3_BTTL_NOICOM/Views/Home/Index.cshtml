@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TH3_BTTL_NOICOM.Models.Product>
+@{
+    Layout = "demo_layout";
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div style="background:#3399cc; color:#fff; padding:8px 15px; font-weight:bold; border-radius:3px;">Sản phẩm mới nhất</div>
+<div class="row" style="margin-top:15px;">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@item.Image" style="width:100%; height:180px; object-fit:cover;" alt="@item.Name" />
+                <div class="caption text-center">
+                    <p>@item.Name</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

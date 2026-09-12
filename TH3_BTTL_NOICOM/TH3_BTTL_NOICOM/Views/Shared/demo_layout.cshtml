@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>DEMO LAB - @ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">DEMO LAB</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                <li><a href="#">Sản phẩm</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top:20px;">
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="Sidebar" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+                <div style="background:#3399cc; color:#fff; padding:8px 15px; font-weight:bold; margin-top:20px; border-radius:3px;">Load từ component</div>
+                <div style="margin-top:15px;">
+                    @await Component.InvokeAsync("HotProduct")
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <div style="background:#4d4d4d; color:#fff; padding:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 style="color:#fff; margin-top:0;">GIỚI THIỆU</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ab suscipit deserunt mollitia reiciendis, nobis iure aliquam velit et laboriosam ducimus veritatis corporis est, dolores aperiam! Officiis impedit provident laboriosam.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4 style="color:#fff; margin-top:0;">LIÊN HỆ</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit amet quasi quisquam impedit magni molestias. Dolores, aliquid commodi ut esse eos voluptatem nisi facilis dolorem, repudiandae culpa ea quidem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
