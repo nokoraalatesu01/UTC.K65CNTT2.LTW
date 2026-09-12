@@ -33,5 +33,11 @@ namespace SachMVCLab03.Controllers
             Book model = book.GetBookByID(id);
             return View(model);
         }
+
+        public PartialViewResult PopularBook()
+        {
+            var books = book.GetBooksList();
+            return PartialView(books);
+        }
     }
 }

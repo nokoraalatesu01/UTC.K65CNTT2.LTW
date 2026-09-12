@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SachMVCLab03.Models.Book>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+    @foreach (var item in Model)
+    {
+        <div style="border:1px solid #ddd; border-radius:6px; padding:10px;">
+            <img src="@item.Image" alt="@item.Title"
+                 style="width:100%; height:200px; object-fit:cover; border-radius:4px;">
+            <h6 style="margin:8px 0 4px;">@item.Title</h6>
+            <p style="margin:0; color:#555;">Price: @item.Price</p>
+        </div>
+    }
+</div>

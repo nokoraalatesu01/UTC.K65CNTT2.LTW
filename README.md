@@ -9,5 +9,5 @@
 Đã làm được Bài tập tự làm quản lý sản phẩm shop của bài thực hành 02 (TH2_BTTL_Shop)  
 Đã làm được Bài 1: Tạo form và sử dụng các thuộc tính mở rộng trên form Bài thực hành 03 (SachMVCLab03)  
 Đã làm được Bài 2: Tạo và sử dụng partial View sừ dụng tại Views/Home/Index.cshtml Bài thực hành 03 (SachMVCLab03)
-  
+Đã làm được Bài 3: Gọi PartialView thông qua jQuery ajax có gửi kèm dữ liệu từ model Bài thực hành 03 (SachMVCLab03)
 Đã nắm bắt được cơ bản trước khi học tiếp
