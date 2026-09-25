@@ -1,0 +1,9 @@
+﻿<h3>Chi tiết User (ViewBag)</h3>
+@{ var userList = ViewBag.UserList as List<Model_Thanh_Vien.Models.User >;}
+@foreach (var p in userList)
+{
+    @p.name <br />
+    @p.address <br />
+    @p.email <br />
+}
+

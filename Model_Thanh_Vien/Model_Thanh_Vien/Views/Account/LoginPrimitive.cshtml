@@ -1,0 +1,19 @@
+﻿<h2>Đăng nhập (Binding Primitive)</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form action="/Account/LoginPrimitive" method="post">
+    <div>
+        <label>User Name:</label>
+        <input type="text" name="userName" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+    </div>
+    <br />
+    <input type="submit" value="Submit" />
+</form>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Model_Thanh_Vien.Models.User>
+
+<h3> Chi tiết User (Model)</h3>
+@foreach (var u in Model)
+{
+    @u.name <br />
+    @u.address <br />
+    @u.email
+    <br />
+    <br />
+}

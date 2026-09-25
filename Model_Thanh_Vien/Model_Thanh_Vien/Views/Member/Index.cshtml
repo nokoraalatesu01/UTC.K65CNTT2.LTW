@@ -1,11 +1,53 @@
-﻿@model Model_Thanh_Vien.Models.Member
+@model IEnumerable<Model_Thanh_Vien.Models.Member>
 
-<h2>Thông tin thành viên</h2>
-<table class="table table-bordered">
-    <tr><th>Mã thành viên</th><td>@Model.MemberId</td></tr>
-    <tr><th>Username</th><td>@Model.Username</td></tr>
-    <tr><th>Họ và tên</th><td>@Model.FullName</td></tr>
-    <tr><th>Password</th><td>@Model.Password</td></tr>
-    <tr><th>Email</th><td>@Model.Email</td></tr>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MemberId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MemberId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
 </table>
-<a href="/Member/GetMembers" class="btn btn-secondary">Xem danh sách thành viên</a>

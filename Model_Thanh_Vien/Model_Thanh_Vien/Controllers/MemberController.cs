@@ -22,7 +22,7 @@ namespace Model_Thanh_Vien.Controllers
 
             };
 
-            return View(member);
+            return View(new List<Member> { member });
         }
 
         public IActionResult GetMembers()

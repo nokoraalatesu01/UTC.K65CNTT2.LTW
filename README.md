@@ -12,4 +12,10 @@
 Đã làm được Bài 3: Gọi PartialView thông qua jQuery ajax có gửi kèm dữ liệu từ model Bài thực hành 03 (SachMVCLab03)
 Đã làm được bài 4: Tạo và sử dụng component và bài 5:Tạo và sử dụng layout cơ bản Bài thực hành 03 và sửa cho phù hợp bootstrap 3. phù hợp đề bài (SachMVCLab03)
 Đã làm được bài tập tự làm của bài thực hành 03 (TH3_BTTL_NOICOM)
+Đã làm được bài tập Thực hành theo ví dụ Demo buổi 6 (Model_Thanh_Vien)
+Đã làm được bài tập Lab Modeel (LMS) buổi 6 (Model_Thanh_Vien)
+
+username: admin
+passwword: 123
+
 Đã nắm bắt được cơ bản trước khi học tiếp
