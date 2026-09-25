@@ -1,0 +1,11 @@
+﻿@model Model_Thanh_Vien.Models.Member
+
+<h2>Thông tin thành viên</h2>
+<table class="table table-bordered">
+    <tr><th>Mã thành viên</th><td>@Model.MemberId</td></tr>
+    <tr><th>Username</th><td>@Model.Username</td></tr>
+    <tr><th>Họ và tên</th><td>@Model.FullName</td></tr>
+    <tr><th>Password</th><td>@Model.Password</td></tr>
+    <tr><th>Email</th><td>@Model.Email</td></tr>
+</table>
+<a href="/Member/GetMembers" class="btn btn-secondary">Xem danh sách thành viên</a>

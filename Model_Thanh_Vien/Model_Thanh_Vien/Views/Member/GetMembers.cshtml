@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Model_Thanh_Vien.Models.Member>
+
+<h2>Danh sahcs thành viên</h2>
+<a href="/Member/Create" class="btn btn-primary">Thêm mới</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Mã sinh viên</th>
+        <th>Username</th>
+        <th>Họ và tên</th>
+        <th>Password</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var m in Model)
+    {
+        <tr>
+            <td>@m.MemberId</td>
+            <td>@m.Username</td>
+            <td>@m.FullName</td>
+            <td>@m.Password</td>
+            <td>@m.Email</td>
+        </tr>
+    }
+</table>
