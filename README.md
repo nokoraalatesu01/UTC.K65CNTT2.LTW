@@ -30,6 +30,8 @@
 
 Đã làm được bài tập Lab demo step by step bài thực hành 05 (NetCoreMVCLAB5)
 
+Đã làm được bài tập Lab Bài tập tự làm Bài thực hành 05 (BTTL_Lab05)
+
 username: admin
 passwword: 123
 

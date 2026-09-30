@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BTTL_Lab05.Models.Product>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<h2>Danh sách sản phẩm</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm mới sản phẩm</a>
+</p>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã SP</th>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá chuẩn</th>
+            <th>Giá KM</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>
+                    <img src="@item.Image" alt="@item.Name" style="width: 80px; height: 80px;" />
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("N0") VND</td>
+                <td>@item.SalePrice.ToString("N0") VND</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
