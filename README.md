@@ -28,6 +28,8 @@
 
 Đã làm được bài tập Thực hành ví dụ demo buổi 7 (Lesson07_DataAnnotation)
 
+Đã làm được bài tập Lab demo step by step bài thực hành 05 (NetCoreMVCLAB5)
+
 username: admin
 passwword: 123
 

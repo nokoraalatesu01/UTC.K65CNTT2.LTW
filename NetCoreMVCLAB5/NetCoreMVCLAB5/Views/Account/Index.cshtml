@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NetCoreMVCLAB5.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create new</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Họ và tên</th>
+            <th>Địa chỉ Email</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ thường trú</th>
+            <th>Ảnh đại diện</th>
+            <th>Ngày sinh</th>
+            <th>Mật khẩu</th>
+            <th>Link Facebook cá nhân</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Address</td>
+                <td>@item.Avatar</td>
+                <td>@item.Birthday.ToShortDateString()</td>
+                <td>@item.Password</td>
+                <td>@item.Facebook</td>
+            </tr>
+        }
+    </tbody>
+</table>
