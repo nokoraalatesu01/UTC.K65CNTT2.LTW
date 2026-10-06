@@ -32,6 +32,8 @@
 
 Đã làm được bài tập Lab Bài tập tự làm Bài thực hành 05 (BTTL_Lab05)
 
+Đã làm được đã làm được bài tập Buổi 08 Code theo demo EF Core theo hướng Database First (NDT_Lesson08)
+
 username: admin
 passwword: 123
 
