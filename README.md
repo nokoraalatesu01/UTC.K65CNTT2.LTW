@@ -36,6 +36,8 @@
 
 Đã làm được bài thực hành STEP BY STEP LabGuide07(bài 1,2,3) Tìm hiểu về Layout (NetCoreLA7)
 
+Đã làm được bài thực hành Bài Tập Tự Làm LabGuide07(bài 1,2) Tìm hiểu về Layout (NetCoreLA7)
+
 username: admin
 passwword: 123
 

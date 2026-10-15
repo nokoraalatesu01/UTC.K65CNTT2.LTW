@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using NetCoreLA7.Areas.Admin.Data;
+
 namespace NetCoreLA7
 {
     public class Program
@@ -8,6 +11,8 @@ namespace NetCoreLA7
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 

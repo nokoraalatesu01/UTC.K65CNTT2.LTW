@@ -1,0 +1,42 @@
+﻿@model Banner
+
+<input type="hidden" asp-for="Id" />
+
+<div class="form-group">
+    <label asp-for="Name">Tên banner</label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label asp-for="Status">Trạng thái</label>
+        <select asp-for="Status" class="form-control">
+            <option value="1">Hiển thị</option>
+            <option value="0">Ẩn</option>
+        </select>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Priority">Độ ưu tiên</label>
+        <input asp-for="Priority" type="number" class="form-control" />
+        <span asp-validation-for="Priority" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="imageFile">Hình ảnh</label>
+    <input type="file" name="imageFile" id="imageFile" class="form-control-file" accept="image/*" />
+    @Html.ValidationMessage("imageFile", new { @class = "text-danger" })
+    @if (!string.IsNullOrEmpty(Model.Image))
+    {
+        <div class="mt-2">
+            <img src="~/uploads/banner/@Model.Image" style="max-height:100px" />
+        </div>
+    }
+</div>
+
+<div class="form-group">
+    <label asp-for="Description">Mô tả</label>
+    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>

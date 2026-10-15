@@ -4,35 +4,18 @@
     ViewData["Title"] = "Chỉnh sửa danh mục";
 }
 
-<h2>Chỉnh sửa danh mục</h2>
-
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">Tên danh mục</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Status" class="form-label">Trạng thái</label>
-        <select asp-for="Status" class="form-select">
-            <option value="1">Hiển thị</option>
-            <option value="0">Ẩn</option>
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label">Mô tả</label>
-        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
-    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
-</form>
+<div class="card card-primary">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_Form" model="Model" />
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cập nhật</button>
+            <a asp-action="Index" class="btn btn-default">Quay lại</a>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

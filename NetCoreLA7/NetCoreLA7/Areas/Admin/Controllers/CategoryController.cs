@@ -1,92 +1,116 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NetCoreLA7.Areas.Admin.Data;
+using NetCoreLA7.Areas.Admin.Helpers;
 using NetCoreLA7.Areas.Admin.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
 namespace NetCoreLA7.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
-         private static List<Category> _categories = new List<Category>()
-        {
-            new Category { Id = 1, Name = "Công nghệ thông tin", Status = 1, Description = "Sách và tài liệu IT" },
-            new Category { Id = 2, Name = "Kinh tế - Quản trị", Status = 1, Description = "Sách kinh doanh" }
-        };
+        private const string Folder = "category";
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-      
-        public IActionResult Index()
+        public CategoryController(ApplicationDbContext context, IWebHostEnvironment env)
         {
-            return View(_categories);
+            _context = context;
+            _env = env;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var list = await _context.Categories.OrderByDescending(c => c.Id).ToListAsync();
+            return View(list);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new Category());
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public async Task<IActionResult> Create(Category category, IFormFile? imageFile)
         {
-            if (_categories.Any(c => c.Name.Equals(category.Name, StringComparison.OrdinalIgnoreCase)))
-            {
-                ModelState.AddModelError("Name", "Tên danh mục đã tồn tại");
-            }
+            await ValidateAsync(category, imageFile);
+            if (!ModelState.IsValid) return View(category);
 
-            if (ModelState.IsValid)
-            {
-                category.Id = _categories.Count > 0 ? _categories.Max(c => c.Id) + 1 : 1;
-                _categories.Add(category);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(category);
+            category.Image = await ImageHelper.SaveAsync(imageFile, _env.WebRootPath, Folder);
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Thêm mới danh mục thành công";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var category = _categories.FirstOrDefault(c => c.Id == id);
+            var category = await _context.Categories.FindAsync(id);
             if (category == null) return NotFound();
             return View(category);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category category)
+        public async Task<IActionResult> Edit(Category category, IFormFile? imageFile)
         {
-            if (_categories.Any(c => c.Id != category.Id && c.Name.Equals(category.Name, StringComparison.OrdinalIgnoreCase)))
+            var existing = await _context.Categories.FindAsync(category.Id);
+            if (existing == null) return NotFound();
+
+            await ValidateAsync(category, imageFile);
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("Name", "Tên danh mục đã tồn tại");
+                category.Image = existing.Image; // để view còn hiện ảnh cũ
+                return View(category);
             }
 
-            if (ModelState.IsValid)
+            existing.Name = category.Name;
+            existing.Status = category.Status;
+            existing.Description = category.Description;
+
+            if (imageFile != null && imageFile.Length > 0)
             {
-                var existing = _categories.FirstOrDefault(c => c.Id == category.Id);
-                if (existing != null)
-                {
-                    existing.Name = category.Name;
-                    existing.Status = category.Status;
-                    existing.Image = category.Image;
-                    existing.Description = category.Description;
-                }
-                return RedirectToAction(nameof(Index));
+                ImageHelper.Delete(existing.Image, _env.WebRootPath, Folder);
+                existing.Image = await ImageHelper.SaveAsync(imageFile, _env.WebRootPath, Folder);
             }
-            return View(category);
+
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Cập nhật danh mục thành công";
+            return RedirectToAction(nameof(Index));
         }
 
-
-        public IActionResult Delete(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            var category = _categories.FirstOrDefault(c => c.Id == id);
-            if (category != null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null) return NotFound();
+
+            if (await _context.Products.AnyAsync(p => p.CategoryId == id))
             {
-                _categories.Remove(category);
+                TempData["Error"] = "Không thể xóa: danh mục này đang có sản phẩm";
+                return RedirectToAction(nameof(Index));
             }
+
+            ImageHelper.Delete(category.Image, _env.WebRootPath, Folder);
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Xóa danh mục thành công";
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task ValidateAsync(Category category, IFormFile? imageFile)
+        {
+            if (await _context.Categories.AnyAsync(c => c.Id != category.Id && c.Name == category.Name))
+                ModelState.AddModelError(nameof(Category.Name), "Tên danh mục đã tồn tại");
+
+            if (imageFile != null && imageFile.Length > 0 && !ImageHelper.IsImage(imageFile))
+                ModelState.AddModelError("imageFile", "Chỉ chấp nhận file ảnh (.jpg, .jpeg, .png, .gif, .webp)");
         }
     }
 }

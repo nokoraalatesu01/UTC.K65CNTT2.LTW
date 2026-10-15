@@ -1,26 +1,73 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - Admin cPanel</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css" />
     @RenderSection("Css", required: false)
 </head>
-<body>
-   <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
-    <div class="container">
-        <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Quản lý Danh mục</a></li>
-        </ul>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Menu ngang phía trên -->
+        <vc:nav-top></vc:nav-top>
+
+        <!-- Menu bên trái -->
+        <vc:nav-left></vc:nav-left>
+
+        <!-- Nội dung -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>@ViewData["Title"]</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            @TempData["Success"]
+                        </div>
+                    }
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            @TempData["Error"]
+                        </div>
+                    }
+                    @RenderBody()
+                </div>
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2026 NetCoreLA7.</strong> All rights reserved.
+            <div class="float-right d-none d-sm-inline-block"><b>Version</b> 1.0</div>
+        </footer>
     </div>
-</nav>
-    <div class="container">
-        @RenderBody()
-    </div>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/dist/js/adminlte.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
