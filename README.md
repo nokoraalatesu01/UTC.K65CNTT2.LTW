@@ -38,6 +38,8 @@
 
 Đã làm được bài thực hành Bài Tập Tự Làm LabGuide07(bài 1,2) Tìm hiểu về Layout (NetCoreLA7)
 
+Đã làm được bài tập Buổi thực hành bài Lab01 ngày 21/10 tại phòng 505A4 (TH_Lab01_QLSV) 
+
 username: admin
 passwword: 123
 
