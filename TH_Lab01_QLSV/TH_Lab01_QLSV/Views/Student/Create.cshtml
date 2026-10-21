@@ -1,11 +1,16 @@
-﻿@model TH_Lab01_QLSV.Models.Student
+@{
+    ViewData["Title"] = "Add Student";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+@model TH_Lab01_QLSV.Models.Student
 @using TH_Lab01_QLSV.Models
 
 <div class="container">
     @*Dùng html thuần*@
     @* <form action="/Admin/Student/Add" method="post" enctype="multipart/form-data" class="mt-3"> *@
     @*Dùng tag helper*@
-    <form asp-controller="Student" asp-action="Create" method="post" enctype="multipart/form-data">
+    @* Cách 3 - asp-route: <form asp-route="StudentCreate" method="post" enctype="multipart/form-data"> *@
+    <form asp-controller="Student" asp-action="Create" method="post" enctype="multipart/form-data" class="mt-3">
         <div class="form-group row mt-2">
             <label class="col-sm-2 col-form-label">Ảnh đại diện</label>
             <div class="col-sm-10">
@@ -46,8 +51,10 @@
         <div class="form-group row mt-2">
             <label asp-for="IsRegular" class="col-sm-2 col-form-label">Hệ đào tạo</label>
             <div class="col-sm-10">
-                <input asp-for="IsRegular" type="checkbox" class="form-check-input" />
-                <label asp-for="IsRegular" class="form-check-label">Chính quy</label>
+                <div class="form-check">
+                    <input asp-for="IsRegular" class="form-check-input" />
+                    <label asp-for="IsRegular" class="form-check-label">Chính quy</label>
+                </div>
             </div>
         </div>
 
@@ -63,10 +70,10 @@
             <div class="col-sm-10">
                 @foreach (var gender in Enum.GetValues<Gender>())
                 {
-                    <label class="form-check-inline">
-                        <input type="radio" asp-for="Gender" value="@gender" />
-                        @(gender == Gender.Male ? "Nam" : "Nữ")
-                    </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="@gender" id="Gender@(gender)" />
+                        <label class="form-check-label" for="Gender@(gender)">@(gender == Gender.Male ? "Nam" : "Nữ")</label>
+                    </div>
                 }
             </div>
         </div>

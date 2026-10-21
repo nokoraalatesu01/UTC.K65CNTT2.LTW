@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TH_Lab01_QLSV.Models;
@@ -71,13 +71,13 @@ namespace TH_Lab01_QLSV.Controllers
             }
         }
 
-        [HttpGet("List")]
+        [HttpGet("List", Name = "StudentList")]
         public IActionResult Index()
         {
             return View(listStudents);
         }
 
-        [HttpGet("Add")]
+        [HttpGet("Add", Name = "StudentAdd")]
         public IActionResult Create()
         {
             ViewBag.AllGenders = Enum.GetValues(typeof(Gender))
@@ -95,7 +95,7 @@ namespace TH_Lab01_QLSV.Controllers
             return View();
         }
 
-        [HttpPost("Add")]
+        [HttpPost("Add", Name = "StudentCreate")]
         public async Task<IActionResult> Create(Student s, IFormFile? imageFile)
         {
             if (listStudents.Count == 0)

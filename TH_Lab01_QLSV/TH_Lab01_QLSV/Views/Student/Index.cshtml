@@ -1,19 +1,20 @@
-﻿@model IEnumerable<TH_Lab01_QLSV.Models.Student>
-<a>Dùng Tag Helper : </a>
-<a asp-controller="Student" asp-action="Index">Danh sách sinh viên</a>
-<a asp-controller="Student" asp-action="Create" class="btn btn-primary">Create Student</a>
-<br />
-<a>Dùng HTML thuần : </a>
-<a href="/Admin/Student/List">Danh sách sinh viên</a>
-<a href="/Admin/Student/Add">Create Student</a>
+@{
+    ViewData["Title"] = "Student List";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+@model IEnumerable<TH_Lab01_QLSV.Models.Student>
 
+@* Có 3 cách tạo link tới form thêm mới (mỗi lần chỉ bật 1 cách, các cách còn lại để trong comment) *@
+@* Cách 1 - HTML thuần:  <a href="/Admin/Student/Add" class="btn btn-primary mb-3">Create Student</a> *@
+@* Cách 2 - asp-action:  <a asp-action="Create" class="btn btn-primary mb-3">Create Student</a> *@
+@* Cách 3 - asp-route (gọi route theo tên "StudentAdd" đặt trong controller): *@
+<a asp-route="StudentAdd" class="btn btn-primary mb-3">Create Student</a>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Mã</th>
             <th>Ảnh</th>
-            
             <th>Họ tên</th>
             <th>Ngày sinh</th>
             <th>Ngành</th>
@@ -31,11 +32,12 @@
                 <td>
                     @if (!string.IsNullOrEmpty(s.ImagePath))
                     {
-                        <img src="@Url.Content("~/" + s.ImagePath)" width="70" alt="Ảnh sinh viên" />
+                        <img src="@Url.Content("~/" + s.ImagePath)" alt="Ảnh sinh viên"
+                             style="width:70px;height:70px;object-fit:cover;" />
                     }
                 </td>
                 <td>@s.Name</td>
-                <td>@s.DateOfBorth</td>
+                <td>@s.DateOfBorth.ToString("dd/MM/yyyy")</td>
                 <td>
                     @{
                         string str = "";
@@ -57,7 +59,7 @@
                     }
                     @str
                 </td>
-                <td>@(s.Gender == Gender.Male ? "Nam" : "Nữ")</td>
+                <td>@(s.Gender == null ? "" : (s.Gender == Gender.Male ? "Nam" : "Nữ"))</td>
                 <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td>
                 <td>@s.Address</td>
                 <td>@s.Email</td>
@@ -65,3 +67,12 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        var table = document.querySelector("table");
+        table.onclick = function onTableClick() {
+            table.style = "background-color: yellow;"
+        }
+    </script>
+}
