@@ -42,6 +42,8 @@
 
 Đã làm được bài tập Buổi thực hành bài Lab02 ngày 21/10 tại phòng 505A4 (TH_Lab01_QLSV) 
 
+Đã làm được bài tập Buổi thực hành bài Lab03 ngày 28/10 tại phòng 505A4 (TH_Lab01_QLSV) 
+
 
 
 username: admin

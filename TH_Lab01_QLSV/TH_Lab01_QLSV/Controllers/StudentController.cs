@@ -98,46 +98,33 @@ namespace TH_Lab01_QLSV.Controllers
         [HttpPost("Add", Name = "StudentCreate")]
         public async Task<IActionResult> Create(Student s, IFormFile? imageFile)
         {
-            if (listStudents.Count == 0)
+            if (imageFile != null && imageFile.Length > 0)
             {
-                s.Id = 101;
+                string extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+                string[] allowed = { ".jpg", ".jpeg", ".png", ".webp" };
+                if (!allowed.Contains(extension))
+                    ModelState.AddModelError("", "Chỉ chấp nhận ảnh JPG, JPEG, PNG hoặc WEBP.");
             }
-            else
-            {
-                s.Id = listStudents.Max(x => x.Id) + 1;
-            }
+
+            if (!ModelState.IsValid)
+                return View(s);   // trả lại form kèm thông báo lỗi
+
+            s.Id = listStudents.Count == 0 ? 101 : listStudents.Max(x => x.Id) + 1;
 
             if (imageFile != null && imageFile.Length > 0)
             {
                 string extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
-                string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-
-                if (!allowedExtensions.Contains(extension))
-                {
-                    return BadRequest("Chỉ chấp nhận ảnh JPG, JPEG, PNG hoặc WEBP.");
-                }
-
-                string folder = Path.Combine(
-                    _environment.WebRootPath,
-                    "images",
-                    "students"
-                );
-
+                string folder = Path.Combine(_environment.WebRootPath, "images", "students");
                 Directory.CreateDirectory(folder);
-
-                string fileName = Guid.NewGuid().ToString() + extension;
-                string filePath = Path.Combine(folder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                string fileName = Guid.NewGuid() + extension;
+                using (var stream = new FileStream(Path.Combine(folder, fileName), FileMode.Create))
                 {
                     await imageFile.CopyToAsync(stream);
                 }
-
                 s.ImagePath = "images/students/" + fileName;
             }
 
             listStudents.Add(s);
-
             return RedirectToAction(nameof(Index));
         }
     }
