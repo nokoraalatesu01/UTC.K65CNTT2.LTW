@@ -42,9 +42,7 @@ namespace TH_Lab01_QLSV.Models
         [Display(Name = "Ngày sinh")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Ngày sinh bắt buộc phải nhập")]
-        [Range(typeof(DateTime), "1963-01-01", "2005-12-31",
-            ParseLimitsInInvariantCulture = true,
-            ErrorMessage = "Ngày sinh phải từ 01/01/1963 đến 31/12/2005")]
+        [DateRange("1963-01-01", "2005-12-31", ErrorMessage = "Ngày sinh phải từ 01/01/1963 đến 31/12/2005")]
         public DateTime DateOfBorth { get; set; }
 
         [Display(Name = "Điểm")]

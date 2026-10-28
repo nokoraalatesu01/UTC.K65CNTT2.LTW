@@ -1,0 +1,39 @@
+@model IEnumerable<DBFirstApp.Models.Learner>
+
+@{
+    ViewData["Title"] = "Learners";
+}
+
+<h1>Learner List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Ngày nhập học</th>
+            <th>Ngành</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.LearnerId</td>
+            <td>@item.LastName</td>
+            <td>@item.FirstMidName</td>
+            <td>@item.EnrollmentDate</td>
+            <td>@item.Major?.MajorName</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LearnerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LearnerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LearnerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
