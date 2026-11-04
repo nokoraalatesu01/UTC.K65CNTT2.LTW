@@ -15,4 +15,4 @@ appsettings*.Secret.json
 *.env
 *.pem
 
-zip
+*.zip
