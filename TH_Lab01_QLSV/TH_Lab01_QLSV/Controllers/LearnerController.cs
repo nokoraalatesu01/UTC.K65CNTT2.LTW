@@ -15,21 +15,61 @@ namespace TH_Lab01_QLSV.Controllers
             db = context;
         }
 
+        // Số phần tử trên 1 trang
+        private int pageSize = 3;
+
         // READ
         public IActionResult Index(int? mid)
         {
-            if (mid == null)
+            IQueryable<Learner> learners = db.Learners.Include(m => m.Major);
+            if (mid != null)
             {
-                var learners = db.Learners.Include(m => m.Major).ToList();
-                return View(learners);
+                learners = learners.Where(l => l.MajorID == mid);
+                ViewBag.mid = mid;
             }
-            else
+
+            // Tính số trang
+            int pageNum = (int)Math.Ceiling(learners.Count() / (float)pageSize);
+            ViewBag.pageNum = pageNum;
+
+            // Lấy dữ liệu trang đầu
+            var result = learners.OrderBy(l => l.LearnerID).Take(pageSize).ToList();
+            return View(result);
+        }
+
+        // Phân trang kết hợp lọc và tìm kiếm (gọi bằng AJAX)
+        public IActionResult LearnerFilter(int? mid, string? keyword, int? pageIndex)
+        {
+            IQueryable<Learner> learners = db.Learners.Include(m => m.Major);
+
+            // Chỉ số trang, nếu null hoặc <= 0 thì mặc định là 1
+            int page = (pageIndex == null || pageIndex <= 0) ? 1 : pageIndex.Value;
+
+            // Lọc theo chuyên ngành
+            if (mid != null)
             {
-                var learners = db.Learners
-                    .Where(l => l.MajorID == mid)
-                    .Include(m => m.Major).ToList();
-                return View(learners);
+                learners = learners.Where(l => l.MajorID == mid);
+                ViewBag.mid = mid;
             }
+
+            // Tìm kiếm theo tên
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                learners = learners.Where(l => l.FirstMidName.ToLower().Contains(keyword.ToLower()));
+                ViewBag.keyword = keyword;
+            }
+
+            // Tính số trang
+            int pageNum = (int)Math.Ceiling(learners.Count() / (float)pageSize);
+            ViewBag.pageNum = pageNum;
+
+            // Lấy dữ liệu trang hiện tại
+            var result = learners.OrderBy(l => l.LearnerID)
+                                 .Skip(pageSize * (page - 1))
+                                 .Take(pageSize)
+                                 .ToList();
+
+            return PartialView("LearnerTable", result);
         }
 
         public IActionResult LearnerByMajorID(int mid)

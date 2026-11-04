@@ -8,6 +8,18 @@
     <h1>Learner List</h1>
     @await Component.InvokeAsync("Major")
 
+    <!-- Form tìm kiếm -->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" onsubmit="return false;">
+        <div class="input-group">
+            <input id="keyword" class="form-control" name="keyword"
+                   type="text" placeholder="Search learner" />
+            <button id="btnSearch" class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <!-- Bảng dữ liệu + thanh phân trang (partial đã chứa cả hai) -->
     <div id="content">
         <partial name="LearnerTable" model="Model" />
     </div>
@@ -17,15 +29,50 @@
 
 @section Scripts {
     <script>
-        $("#majorMenu li").click(function () {
-            var id = $(this).attr("id");
+        var filterUrl = '@Url.Action("LearnerFilter", "Learner")';
+
+        // Click vào số trang
+        $('body').on('click', 'li.page-item', function () {
+            var data = {
+                mid: $(this).attr("mid"),
+                keyword: $(this).attr("keyword"),
+                pageIndex: $(this).attr("page")
+            };
             $.ajax({
-                url: '@Url.Action("LearnerByMajorID", "Learner")',
-                data: { mid: id },
+                url: filterUrl,
+                data: data,
                 success: function (response) {
                     $("div#content").html(response);
                 }
             });
+        });
+
+        // Click vào chuyên ngành
+        $("#majorMenu li").click(function () {
+            var data = { mid: $(this).attr("id") };
+            $.ajax({
+                url: filterUrl,
+                data: data,
+                success: function (response) {
+                    $("div#content").html(response);
+                }
+            });
+        });
+
+        // Click nút Search
+        function doSearch() {
+            var data = { keyword: $("#keyword").val() };
+            $.ajax({
+                url: filterUrl,
+                data: data,
+                success: function (response) {
+                    $("div#content").html(response);
+                }
+            });
+        }
+        $("button#btnSearch").click(doSearch);
+        $("#keyword").keydown(function (e) {
+            if (e.key === "Enter") doSearch();
         });
     </script>
 }

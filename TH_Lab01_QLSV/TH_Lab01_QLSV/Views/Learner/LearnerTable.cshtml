@@ -27,3 +27,13 @@
         }
     </tbody>
 </table>
+
+<!-- Thanh nav-phân trang -->
+<ul class="pagination">
+    @for (int i = 1; i <= ViewBag.pageNum; i++)
+    {
+        <li class="page-item" style="cursor:pointer" page="@i" mid="@ViewBag.mid" keyword="@ViewBag.keyword">
+            <a class="page-link">@i</a>
+        </li>
+    }
+</ul>
