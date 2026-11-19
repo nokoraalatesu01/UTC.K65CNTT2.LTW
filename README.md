@@ -50,6 +50,8 @@
 
 Đã làm được bài tập Buổi thực hành bài Lab06 ngày 04/11 tại phòng 505A4 (TH_Lab01_QLSV)
 
+Đã làm được bài thực hành làm bài thi mẫu 2023
+
 
 username: admin
 passwword: 123

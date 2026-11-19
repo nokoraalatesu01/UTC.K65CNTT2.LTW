@@ -1,0 +1,15 @@
+﻿@model List<HangHoa>
+<div id = "mainContent">
+    <partial name="NguyenDucTruong_MainContent" model="Model" />
+</div>
+@section Scripts {
+    <script>
+        $(function () {
+            $('.loai-link').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#mainContent').load('/Home/HangHoaTheoLoai?maLoai=' + id);
+            });
+        });
+    </script>
+}
