@@ -1,0 +1,16 @@
+﻿@model List<Sach>
+<div id="mainContent">
+    <partial name="NguyenDucTruong_MainContent" model="Model" />
+</div>
+
+@section Scripts {
+    <script>
+        $(function() {
+                $('.loai-link').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $('#mainContent').load('/Home/SachTheoLoai?maTl=' + id);
+            });
+            });
+    </script>
+}
