@@ -54,7 +54,9 @@
 
 Đã làm được bài thực hành làm bài thi mẫu 2026 (NguyenTruong_241230872)
 
-Đã làm được bài thực hành làm bài thi mẫu 2026 (NguyenDucTruong_241230872_IT2)
+Đã làm được bài thực hành làm bài thi mẫu 2026 đề 1 (NguyenDucTruong_241230872_IT2)
+
+Đã làm được bài thực hành làm bài thi mẫu 2026 đề 2 (NguyenDucTruong_241230872_IT)
 
 username: admin
 passwword: 123

@@ -1,0 +1,22 @@
+﻿@model NguyenDucTruong_241230872_IT.Models.TaiSan
+<h3>Sua Tai San</h3>
+
+<form asp-action = "Edit" method="Post">
+    <input type="hidden" asp-for="MaTs" />
+    <p>Loai Tai San <br />
+        <select asp-for="MaLoai" asp-items="(SelectList)ViewBag.DsLoai"></select>
+        </p>
+    <p>Tai San <br />
+        <input asp-for="TenTs"/>
+        <span asp-validation-for="TenTs"></span>
+        </p>
+    <p>NguyenGia<br />
+        <input asp-for="NguyenGia"/>
+        <span asp-validation-for="NguyenGia"></span>
+        </p>
+    <p>Anh<br />
+        <input asp-for="Anh"/>
+        <span asp-validation-for="Anh"></span>
+        </p>
+    <button type="submit">Save</button>
+</form>
