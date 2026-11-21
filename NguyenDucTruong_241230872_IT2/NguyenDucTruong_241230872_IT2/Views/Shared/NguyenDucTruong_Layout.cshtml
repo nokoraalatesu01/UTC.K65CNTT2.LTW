@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AssetHub - Quản lý tài sản doanh nghiệp</title>
+    <link href="~/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <partial name="NguyenDucTruong_Header" />
+    <!-- Begin Main Content -->
+    <main class="main">
+        <div class="container" id="main-content">
+            @RenderBody()
+        </div>
+    </main>
+    <!-- End Main Content -->
+    <partial name="NguyenDucTruong_Footer" />
+
+    <div class="to-top">&uarr;</div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script>
+        $(function () {
+            $('.loai').on('click', function (e) {
+                e.preventDefault();
+                $('#main-content').load('/Home/TheoLoai/' + $(this).data('id'));
+            });
+        });
+    </script>
+</body>
+</html>

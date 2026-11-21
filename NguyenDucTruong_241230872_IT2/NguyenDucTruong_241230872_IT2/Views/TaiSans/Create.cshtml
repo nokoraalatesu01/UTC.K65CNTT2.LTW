@@ -1,0 +1,42 @@
+@model NguyenDucTruong_241230872_IT2.Models.TaiSan
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TaiSan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <select asp-for="MaLoai" asp-items="(SelectList)ViewBag.DsLoai"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TenTs" class="control-label"></label>
+                <input asp-for="TenTs" class="form-control" />
+                <span asp-validation-for="TenTs" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NguyenGia" class="control-label"></label>
+                <input asp-for="NguyenGia" class="form-control" />
+                <span asp-validation-for="NguyenGia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Anh" class="control-label"></label>
+                <input asp-for="Anh" class="form-control" />
+                <span asp-validation-for="Anh" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

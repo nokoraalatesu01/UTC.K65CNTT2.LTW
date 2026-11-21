@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TaiSan>
+<div class="section-head">
+                <h3>Nguyen Duc Truong</h3>
+                <a href="#">Xem tất cả &rsaquo;</a>
+</div>
+<div class="grid">
+    @foreach (var t in Model)
+    {
+        <div class="asset-card">
+            <a href="#"><img src="~/images/@t.Anh" alt="" /></a>
+            <h2>@t.TenTs</h2>
+            <div class="asset-foot"><span class="price">@t.NguyenGia</span><button class="btn-buy">Chi tiết</button></div>
+        </div>
+    }
+</div>

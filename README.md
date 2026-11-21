@@ -50,10 +50,11 @@
 
 Đã làm được bài tập Buổi thực hành bài Lab06 ngày 04/11 tại phòng 505A4 (TH_Lab01_QLSV)
 
-Đã làm được bài thực hành làm bài thi mẫu 2023
+Đã làm được bài thực hành làm bài thi mẫu 2023 (NguyenDucTruong_241230872)
 
-Đã làm được bài thực hành làm bài thi mẫu 2026
+Đã làm được bài thực hành làm bài thi mẫu 2026 (NguyenTruong_241230872)
 
+Đã làm được bài thực hành làm bài thi mẫu 2026 (NguyenDucTruong_241230872_IT2)
 
 username: admin
 passwword: 123
